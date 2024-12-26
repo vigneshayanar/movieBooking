@@ -1,0 +1,89 @@
+<template>
+    <lightning-card title="Movie Booking For Patrons" icon-name="standard:event"></lightning-card>
+    <div class="container">
+        <!-- Theater Combobox -->
+        <lightning-combobox
+            name="progressTheater"
+            label="Theater Name"
+            value={selectedTheater}
+            placeholder="Select Theater"
+            options={Theatersnames}
+            onchange={handlechange}>
+        </lightning-combobox>
+
+        <!-- Movie Combobox -->
+        <lightning-combobox
+            name="progressMovie"
+            label="Movie Name"
+            value={selectedMovie}
+            placeholder="Select Movie"
+            options={Moviesnames}
+            onchange={handlechange}>
+        </lightning-combobox>
+
+        <!-- Movie Showing Combobox -->
+         <template lwc:if={movieAvalibale}>
+        <lightning-combobox
+            name="progressMovieshowing"
+            label="Movie Showing"
+            value={selectedmovieshowing}
+            placeholder="Select Movie Showing"
+            options={MovieShowings}
+            onchange={handlechange}>
+        </lightning-combobox>
+        </template>
+        <template lwc:else>
+            <div class="slds-text-body_small">There is No MovieShowing is available on movie</div>
+        </template>
+
+        <!-- Patron Combobox -->
+        <lightning-combobox
+            name="progressPatron"
+            label="Patron Name"
+            value={selectedpatron}
+            placeholder="Select Patron"
+            options={PatronNames}
+            onchange={handlechange}>
+        </lightning-combobox>
+        <!---->
+        <lightning-input type="number"
+        lable="number of ticktes"
+        name="tickets"
+        value={NoofTickets}
+        onchange={handlevalues}
+        >
+        </lightning-input>
+        <!-- Email Input -->
+        <lightning-input
+            type="email"
+            name="email"
+            value={email}
+            label="Email for Communication"
+            onchange={handlevalues}
+            required>
+        </lightning-input>
+
+        <!-- Mobile Number Input -->
+        <lightning-input
+            type="tel"
+            name="tel"
+            value={phoneNo}
+            label="Mobile Number"
+            pattern="^\d{10}$"
+            onchange={handlevalues}
+            required>
+        </lightning-input>
+
+        <!-- Buttons -->
+        <lightning-button
+            variant="neutral"
+            label="Confirm"
+            onclick={handleFinish}>
+        </lightning-button>
+        <lightning-button
+            variant="brand"
+            label="Submit"
+            onclick={handleConfrim}>
+        </lightning-button>
+    </div>
+</template>
